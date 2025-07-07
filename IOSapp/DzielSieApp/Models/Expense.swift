@@ -7,21 +7,52 @@
 
 import Foundation
 
+/// Model reprezentujący wydatek w grupie
+/// Zawiera wszystkie informacje o wydatku, w tym podział między użytkowników
 struct Expense: Identifiable, Codable {
+    /// Unikalny identyfikator wydatku
     let id: String
+    
+    /// ID grupy, do której należy wydatek
     let group: String
+    
+    /// Opis wydatku
     let description: String
+    
+    /// Kwota wydatku
     let amount: Double
+    
+    /// Waluta wydatku
     let currency: String
+    
+    /// Użytkownik który zapłacił za wydatek
     let paidBy: User
+    
+    /// Data wydatku
     let date: Date
+    
+    /// Kategoria wydatku (jedzenie, transport, itp.)
     let category: ExpenseCategory
+    
+    /// Typ podziału wydatku (równo, procentowo, itp.)
     let splitType: SplitType
+    
+    /// Lista podziałów wydatku między użytkowników
     let splits: [ExpenseSplit]
+    
+    /// Opcjonalne zdjęcie paragonu (URL)
     let receipt: String?
+    
+    /// Opcjonalne flagi wydatku (pilne, sporne, itp.)
     let flags: [ExpenseFlag]?
+    
+    /// Opcjonalne komentarze do wydatku
     let comments: [ExpenseComment]?
+    
+    /// Data utworzenia wydatku
     let createdAt: Date
+    
+    /// Data ostatniej aktualizacji wydatku
     let updatedAt: Date
     
     enum CodingKeys: String, CodingKey {
@@ -43,14 +74,17 @@ struct Expense: Identifiable, Codable {
     }
 }
 
+/// Enum reprezentujący kategorie wydatków
+/// CaseIterable pozwala na iterację po wszystkich przypadkach
 enum ExpenseCategory: String, Codable, CaseIterable {
-    case food = "food"
-    case transport = "transport"
-    case accommodation = "accommodation"
-    case entertainment = "entertainment"
-    case utilities = "utilities"
-    case other = "other"
+    case food = "food"                      // Jedzenie
+    case transport = "transport"            // Transport
+    case accommodation = "accommodation"    // Zakwaterowanie
+    case entertainment = "entertainment"    // Rozrywka
+    case utilities = "utilities"            // Rachunki
+    case other = "other"                    // Inne
     
+    /// Zwraca czytelne nazwy kategorii po polsku
     var displayName: String {
         switch self {
         case .food:
@@ -68,29 +102,31 @@ enum ExpenseCategory: String, Codable, CaseIterable {
         }
     }
     
+    /// Zwraca nazwę ikony SF Symbols dla danej kategorii
     var icon: String {
         switch self {
         case .food:
-            return "fork.knife"
+            return "fork.knife"              // Widelec i nóż
         case .transport:
-            return "car.fill"
+            return "car.fill"               // Samochód
         case .accommodation:
-            return "house.fill"
+            return "house.fill"             // Dom
         case .entertainment:
-            return "ticket.fill"
+            return "ticket.fill"            // Bilet
         case .utilities:
-            return "bolt.fill"
+            return "bolt.fill"              // Błyskawica
         case .other:
-            return "ellipsis.circle.fill"
+            return "ellipsis.circle.fill"  // Wielokropek
         }
     }
 }
 
+/// Enum reprezentujący sposoby podziału wydatku
 enum SplitType: String, Codable, CaseIterable {
-    case equal = "equal"
-    case percentage = "percentage"
-    case exact = "exact"
-    case shares = "shares"
+    case equal = "equal"            // Podział równy
+    case percentage = "percentage"  // Podział procentowy
+    case exact = "exact"            // Dokładne kwoty
+    case shares = "shares"          // Podział na udziały
     
     var displayName: String {
         switch self {
@@ -119,12 +155,24 @@ enum SplitType: String, Codable, CaseIterable {
     }
 }
 
+/// Model reprezentujący podział wydatku dla konkretnego użytkownika
 struct ExpenseSplit: Identifiable, Codable {
+    /// Unikalny identyfikator podziału
     let id: String
+    
+    /// Użytkownik którego dotyczy podział
     let user: User
+    
+    /// Kwota przypadająca na tego użytkownika
     let amount: Double
+    
+    /// Procent (jeśli typ podziału to percentage)
     let percentage: Double?
+    
+    /// Liczba udziałów (jeśli typ podziału to shares)
     let shares: Int?
+    
+    /// Czy użytkownik już rozliczył swoją część
     let settled: Bool
     
     enum CodingKeys: String, CodingKey {
@@ -137,16 +185,25 @@ struct ExpenseSplit: Identifiable, Codable {
     }
 }
 
+/// Flagi możliwe do ustawienia na wydatku
 enum ExpenseFlag: String, Codable {
-    case pending = "pending"
-    case urgent = "urgent"
-    case disputed = "disputed"
+    case pending = "pending"      // Oczekujący
+    case urgent = "urgent"        // Pilny
+    case disputed = "disputed"    // Sporny
 }
 
+/// Model reprezentujący komentarz do wydatku
 struct ExpenseComment: Identifiable, Codable {
+    /// Unikalny identyfikator komentarza
     let id: String
+    
+    /// Użytkownik który napisał komentarz
     let user: User
+    
+    /// Treść komentarza
     let text: String
+    
+    /// Data utworzenia komentarza
     let createdAt: Date
     
     enum CodingKeys: String, CodingKey {

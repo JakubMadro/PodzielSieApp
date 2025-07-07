@@ -8,39 +8,86 @@ enum HTTPMethod: String {
     case delete = "DELETE"
 }
 
+/// Enum definiujący wszystkie endpointy API aplikacji
+/// Każdy case zawiera parametry potrzebne do wykonania żądania
 enum APIEndpoint {
-    // Autentykacja
+    // MARK: - Autentykacja
+    /// Logowanie użytkownika
     case login(email: String, password: String)
+    
+    /// Rejestracja nowego użytkownika
     case register(user: RegistrationData)
+    
+    /// Resetowanie hasła - wysyłanie linku na email
     case forgotPassword(email: String)
+    
+    /// Resetowanie hasła - ustawianie nowego hasła
     case resetPassword(token: String, newPassword: String, confirmPassword: String)
     
-    // Grupy
+    // MARK: - Grupy
+    /// Pobranie listy grup użytkownika
     case getGroups
+    
+    /// Pobranie szczegółów konkretnej grupy
     case getGroupDetails(groupId: String)
+    
+    /// Tworzenie nowej grupy
     case createGroup(name: String, description: String?, defaultCurrency: String?)
+    
+    /// Aktualizacja danych grupy
     case updateGroup(groupId: String, name: String?, description: String?, defaultCurrency: String?)
+    
+    /// Dodanie nowego członka do grupy
     case addGroupMember(groupId: String, email: String, role: String?)
+    
+    /// Usunięcie członka z grupy
     case removeGroupMember(groupId: String, userId: String)
+    
+    /// Aktualizacja roli członka w grupie
     case updateMemberRole(groupId: String, userId: String, role: String)
+    
+    /// Archiwizacja/przywracanie grupy
     case archiveGroup(groupId: String, archive: Bool)
+    
+    /// Usunięcie grupy
     case deleteGroup(groupId: String)
+    
+    /// Pobranie salda użytkownika w grupie
     case getUserBalance(groupId: String)
+    
+    /// Pobranie sald wszystkich członków grupy
     case getGroupBalances(groupId: String)
     
-    // Wydatki
+    // MARK: - Wydatki
+    /// Tworzenie nowego wydatku
     case createExpense(expenseData: ExpenseCreateData)
+    
+    /// Pobranie wydatków grupy z paginacją
     case getGroupExpenses(groupId: String, page: Int?, limit: Int?)
+    
+    /// Pobranie szczegółów wydatku
     case getExpenseDetails(expenseId: String)
+    
+    /// Aktualizacja wydatku
     case updateExpense(expenseId: String, updateData: [String: Any])
+    
+    /// Usunięcie wydatku
     case deleteExpense(expenseId: String)
+    
+    /// Dodanie komentarza do wydatku
     case addExpenseComment(expenseId: String, text: String)
     
-    // Rozliczenia
+    // MARK: - Rozliczenia
+    /// Pobranie oczekujących rozliczeń
     case getPendingSettlements
+    
+    /// Pobranie zakończonych rozliczeń
     case getCompletedSettlements
+    
+    /// Pobranie wszystkich rozliczeń
     case getAllSettlements
     
+    /// Zwraca ścieżkę URL dla danego endpointu
     var path: String {
         switch self {
         // Autentykacja
@@ -101,34 +148,35 @@ enum APIEndpoint {
         }
     }
     
+    /// Zwraca metodę HTTP dla danego endpointu
     var method: HTTPMethod {
         switch self {
-        // POST
+        // POST - tworzenie nowych zasobów
         case .login, .register, .forgotPassword, .resetPassword, .createGroup, .addGroupMember, .createExpense, .addExpenseComment:
             return .post
             
-        // PUT
+        // PUT - aktualizacja istniejących zasobów
         case .updateGroup, .updateMemberRole, .archiveGroup, .updateExpense:
             return .put
             
-        // GET
+        // GET - pobieranie danych
         case .getGroups, .getGroupDetails, .getGroupExpenses, .getExpenseDetails, .getUserBalance, .getGroupBalances, .getPendingSettlements, .getCompletedSettlements, .getAllSettlements:
             return .get
         
-            
-        // DELETE
+        // DELETE - usuwanie zasobów
         case .removeGroupMember, .deleteGroup, .deleteExpense:
             return .delete
         }
     }
     
+    /// Zwraca ciało żądania HTTP (body) dla danego endpointu
     var body: [String: Any]? {
         switch self {
         case .login(let email, let password):
             return ["email": email, "password": password]
             
         case .register(let user):
-            // Dla obiektu RegistrationData musimy zapewnić niestandardową konwersję
+            // Konwersja obiektu RegistrationData na słownik
             let encoder = JSONEncoder()
             guard let data = try? encoder.encode(user),
                   let dict = try? JSONSerialization.jsonObject(with: data) as? [String: Any] else {

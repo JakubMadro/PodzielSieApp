@@ -1,15 +1,25 @@
 // LoginView.swift
+/// Ekran logowania użytkownika z gradientowym tłem i animacjami
 import SwiftUI
 
 struct LoginView: View {
-
+    
+    /// Czy hasło ma być widoczne (toggle dla ikony oka)
     @State private var showPassword = false
+    
+    /// Czy wyświetlić ekran rejestracji
     @State private var showRegistration = false
+    
+    /// Czy wyświetlić ekran resetowania hasła
     @State private var showForgotPassword = false
     
+    /// Globalny stan aplikacji (wstrzyknięty przez SwiftUI)
     @EnvironmentObject private var appState: AppState
+    
+    /// ViewModel zarządzający logiką logowania
     @StateObject private var viewModel: LoginViewModel
     
+    /// Inicjalizator tworzjący ViewModel z referencją do AppState
     init() {
         _viewModel = StateObject(wrappedValue: LoginViewModel(appState: AppState.shared))
     }
@@ -22,8 +32,9 @@ struct LoginView: View {
                 
                 ScrollView {
                     VStack(spacing: 35) {
-                        // Logo i tytuł
+                        // Logo i tytuł aplikacji
                         VStack(spacing: 20) {
+                            // Ikona aplikacji w kołku z cieniem
                             ZStack {
                                 Circle()
                                     .fill(Color.white.opacity(0.2))
@@ -37,6 +48,7 @@ struct LoginView: View {
                             }
                             .shadow(color: .black.opacity(0.3), radius: 20, x: 0, y: 10)
                             
+                            // Nazwa aplikacji i opis
                             VStack(spacing: 8) {
                                 Text("DzielSię")
                                     .font(.system(size: 42, weight: .bold))
@@ -49,9 +61,9 @@ struct LoginView: View {
                         }
                         .padding(.top, 60)
                         
-                        // Formularz logowania
+                        // Formularz logowania z polami email i hasło
                         VStack(spacing: 25) {
-                            // Email
+                            // Pole wprowadzania adresu email
                             VStack(alignment: .leading, spacing: 12) {
                                 Text("ADRES EMAIL")
                                     .font(.caption)
@@ -83,7 +95,7 @@ struct LoginView: View {
                                 )
                             }
                             
-                            // Hasło
+                            // Pole wprowadzania hasła z opcją pokazania/ukrycia
                             VStack(alignment: .leading, spacing: 12) {
                                 Text("HASŁO")
                                     .font(.caption)
@@ -92,10 +104,12 @@ struct LoginView: View {
                                     .kerning(0.5)
                                 
                                 HStack {
+                                    // Ikona kłódki
                                     Image(systemName: "lock.fill")
                                         .foregroundColor(.white.opacity(0.7))
                                         .frame(width: 20)
                                     
+                                    // Pole hasła - zwykłe lub bezpieczne w zależności od showPassword
                                     if showPassword {
                                         TextField("Wprowadź hasło", text: $viewModel.password)
                                             .autocapitalization(.none)
@@ -110,6 +124,7 @@ struct LoginView: View {
                                             .tint(.white)
                                     }
                                     
+                                    // Przycisk pokazania/ukrycia hasła
                                     Button(action: {
                                         showPassword.toggle()
                                     }) {
@@ -129,7 +144,7 @@ struct LoginView: View {
                                 )
                             }
                             
-                            // Zapomniałem hasła
+                            // Link do resetowania hasła
                             HStack {
                                 Spacer()
                                 
@@ -146,7 +161,7 @@ struct LoginView: View {
                         }
                         .padding(.horizontal, 32)
                         
-                        // Przycisk logowania
+                        // Główny przycisk logowania z animacją
                         Button(action: {
                             viewModel.login()
                         }) {
@@ -168,7 +183,7 @@ struct LoginView: View {
                             .padding(.horizontal, 32)
                         }
                         .disabled(!viewModel.isFormValid || viewModel.isLoading)
-                        .scaleEffect(viewModel.isFormValid ? 1.0 : 0.98)
+                        .scaleEffect(viewModel.isFormValid ? 1.0 : 0.98)  // Animacja skali
                         .animation(.easeInOut(duration: 0.2), value: viewModel.isFormValid)
                         
                         // Rejestracja
@@ -200,7 +215,7 @@ struct LoginView: View {
                 }
             }
                 
-                // Wskaźnik ładowania
+                // Overlay z wskaźnikiem ładowania podczas logowania
                 if viewModel.isLoading {
                     Color.black.opacity(0.4)
                         .ignoresSafeArea()

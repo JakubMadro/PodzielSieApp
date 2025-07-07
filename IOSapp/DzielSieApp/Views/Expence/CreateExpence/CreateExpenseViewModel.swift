@@ -8,20 +8,41 @@
 import Foundation
 import Combine
 
+/// ViewModel zarządzający tworzeniem nowego wydatku w grupie
+/// Obsługuje walidację, podział kosztów i komunikację z API
 class CreateExpenseViewModel: ObservableObject {
-    // MARK: - Published properties
+    // MARK: - Published properties (obserwowalne przez UI)
+    /// Opis wydatku
     @Published var description: String = ""
+    
+    /// Kwota wydatku jako tekst (dla TextField)
     @Published var amountText: String = ""
+    
+    /// Waluta wydatku
     @Published var currency: String = "PLN"
+    
+    /// ID użytkownika, który zapłacił
     @Published var paidByUserId: String = ""
+    
+    /// Data wydatku
     @Published var date: Date = Date()
+    
+    /// Kategoria wydatku
     @Published var category: ExpenseCategory = .other
+    
+    /// Typ podziału kosztów
     @Published var splitType: SplitType = .equal
+    
+    /// Lista elementów podziału dla każdego użytkownika
     @Published var splits: [SplitItem] = []
     
+    /// Czy operacja jest w trakcie
     @Published var isLoading: Bool = false
+    
+    /// Komunikat błędu
     @Published var error: String?
     
+    /// Lista dostępnych członków grupy
     @Published var availableMembers: [GroupUser] = []
     
     // MARK: - Private properties
@@ -29,11 +50,13 @@ class CreateExpenseViewModel: ObservableObject {
     private let groupsService: GroupsServiceProtocol
     private var cancellables = Set<AnyCancellable>()
     
-    // MARK: - Computed properties
+    // MARK: - Computed properties (wyliczane dynamicznie)
+    /// Konwertuje tekst kwoty na wartość Double
     var amount: Double {
         return Double(amountText.replacingOccurrences(of: ",", with: ".")) ?? 0
     }
     
+    /// Formatuje datę do wyświetlenia
     var formattedDate: String {
         let formatter = DateFormatter()
         formatter.dateStyle = .medium
@@ -41,31 +64,41 @@ class CreateExpenseViewModel: ObservableObject {
         return formatter.string(from: date)
     }
     
+    /// Suma wszystkich procentów w podziale procentowym
     var totalPercentage: Double {
         return splits.reduce(0) { $0 + ($1.percentage ?? 0) }
     }
     
+    /// Suma wszystkich kwot w podziale dokładnym
     var totalSplitAmount: Double {
         return splits.reduce(0) { $0 + ($1.amount ?? 0) }
     }
     
+    /// Całkowita liczba udziałów
     var totalShares: Int {
         return splits.reduce(0) { $0 + $1.shares }
     }
     
+    /// Sprawdza czy suma procentów wynosi 100% (z tolerancją)
     var isPercentageValid: Bool {
         return abs(totalPercentage - 100) < 0.1 // Z tolerancją dla błędów zaokrąglenia
     }
     
+    /// Sprawdza czy suma kwot równa się całkowitej kwocie (z tolerancją)
     var isAmountValid: Bool {
         return abs(totalSplitAmount - amount) < 0.01 // Z tolerancją dla błędów zaokrąglenia
     }
     
+    /// Sprawdza czy formularz może być wysłany
     var canSubmit: Bool {
         return !description.isEmpty && amount > 0 && !paidByUserId.isEmpty && areAllSplitsValid()
     }
     
     // MARK: - Initialization
+    /// Inicjalizator z możliwością wstrzyknięcia zależności
+    /// - Parameters:
+    ///   - expenseService: Serwis wydatków
+    ///   - groupsService: Serwis grup
     init(expenseService: ExpenseServiceProtocol = ExpenseService(), groupsService: GroupsServiceProtocol = GroupsService()) {
         self.expenseService = expenseService
         self.groupsService = groupsService
