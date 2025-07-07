@@ -1,11 +1,16 @@
+// Importy zewnętrznych bibliotek
 const bcrypt = require('bcrypt');
+
+// Importy modeli danych
 const User = require('../../models/User');
-const { generateToken, generateRefreshToken } = require('../../config/auth');
-const userService = require('../services/userService');
 const Group = require('../../models/Group');
 const Expense = require('../../models/Expense');
 
-// Importy DTO
+// Importy konfiguracji i serwisów
+const { generateToken, generateRefreshToken } = require('../../config/auth');
+const userService = require('../services/userService');
+
+// Importy DTO dla walidacji danych wejściowych
 const CreateUserDto = require('../dto/request/user/CreateUserDto');
 const LoginUserDto = require('../dto/request/user/LoginUserDto');
 const UpdateUserDto = require('../dto/request/user/UpdateUserDto');
@@ -14,8 +19,12 @@ const RefreshTokenDto = require('../dto/request/user/RefreshTokenDto');
 const SearchQueryDto = require('../dto/request/user/SearchQueryDto');
 const ForgotPasswordDto = require('../dto/request/user/ForgotPasswordDto');
 const ResetPasswordDto = require('../dto/request/user/ResetPasswordDto');
+
+// Importy mapperów do konwersji danych
 const UserMapper = require('../dto/mappers/UserMapper');
 const ActivityMapper = require('../dto/mappers/ActivityMapper');
+
+// Importy narzędzi pomocniczych
 const { sendEmailNotification } = require('../../utils/notifications');
 const { generateResetToken, hashToken, isTokenValid, generateExpirationDate } = require('../../utils/tokenGenerator');
 
@@ -26,10 +35,11 @@ const { generateResetToken, hashToken, isTokenValid, generateExpirationDate } = 
  */
 exports.register = async (req, res, next) => {
     try {
-        // Utwórz DTO i zwaliduj dane wejściowe
+        // Utwórz DTO i zwaliduj dane wejściowe z body requestu
         const createUserDto = new CreateUserDto(req.body);
         const validation = createUserDto.validate();
 
+        // Sprawdź czy dane przeszły walidację
         if (!validation.isValid) {
             return res.status(400).json({
                 success: false,
@@ -38,7 +48,7 @@ exports.register = async (req, res, next) => {
             });
         }
 
-        // Sprawdzenie, czy użytkownik już istnieje
+        // Sprawdź czy użytkownik o podanym emailu już istnieje w bazie
         const userExists = await User.findOne({ email: createUserDto.email });
         if (userExists) {
             return res.status(409).json({
@@ -47,29 +57,31 @@ exports.register = async (req, res, next) => {
             });
         }
 
-        // Utwórz nowy obiekt użytkownika na podstawie DTO
+        // Utwórz nowy obiekt użytkownika na podstawie zwalidowanych danych
         const user = new User(createUserDto.toEntity());
 
-        // Zapisz użytkownika w bazie danych
+        // Zapisz użytkownika w bazie danych (hasło zostanie automatycznie zahashowane)
         await user.save();
 
-        // Wygenerowanie tokenów JWT
+        // Wygeneruj tokeny JWT do autoryzacji
         const token = generateToken(user);
         const refreshToken = generateRefreshToken(user);
 
-        // Aktualizacja refresh tokenu w bazie danych
+        // Zapisz refresh token w bazie danych dla przyszłych odświeżeń
         user.refreshToken = refreshToken;
         await user.save();
 
-        // Mapuj odpowiedź przy użyciu DTO
+        // Mapuj dane użytkownika do DTO odpowiedzi
         const userDto = UserMapper.toDto(user);
 
+        // Zwróć odpowiedź z danymi użytkownika i tokenami
         res.status(201).json({
             success: true,
             message: 'Rejestracja zakończona pomyślnie',
             ...userDto.getAuthInfo(token, refreshToken)
         });
     } catch (error) {
+        // Przekaż błąd do middleware obsługi błędów
         next(error);
     }
 };
@@ -81,10 +93,11 @@ exports.register = async (req, res, next) => {
  */
 exports.login = async (req, res, next) => {
     try {
-        // Utwórz DTO i zwaliduj dane wejściowe
+        // Utwórz DTO i zwaliduj dane logowania z body requestu
         const loginUserDto = new LoginUserDto(req.body);
         const validation = loginUserDto.validate();
 
+        // Sprawdź czy dane logowania są poprawne
         if (!validation.isValid) {
             return res.status(400).json({
                 success: false,
@@ -93,7 +106,7 @@ exports.login = async (req, res, next) => {
             });
         }
 
-        // Sprawdzenie, czy użytkownik istnieje
+        // Poszukaj użytkownika po adresie email
         const user = await User.findOne({ email: loginUserDto.email });
         if (!user) {
             return res.status(401).json({
@@ -102,7 +115,7 @@ exports.login = async (req, res, next) => {
             });
         }
 
-        // Weryfikacja hasła
+        // Sprawdź czy podane hasło jest poprawne
         const isPasswordValid = await user.comparePassword(loginUserDto.password);
         if (!isPasswordValid) {
             return res.status(401).json({
@@ -111,23 +124,25 @@ exports.login = async (req, res, next) => {
             });
         }
 
-        // Wygenerowanie tokenów JWT
+        // Wygeneruj nowe tokeny JWT dla sesji
         const token = generateToken(user);
         const refreshToken = generateRefreshToken(user);
 
-        // Aktualizacja refresh tokenu w bazie danych
+        // Zapisz nowy refresh token w bazie danych
         user.refreshToken = refreshToken;
         await user.save();
 
-        // Mapuj odpowiedź przy użyciu DTO
+        // Mapuj dane użytkownika do DTO odpowiedzi
         const userDto = UserMapper.toDto(user);
 
+        // Zwróć odpowiedź z danymi użytkownika i tokenami
         res.json({
             success: true,
             message: 'Logowanie zakończone pomyślnie',
             ...userDto.getAuthInfo(token, refreshToken)
         });
     } catch (error) {
+        // Przekaż błąd do middleware obsługi błędów
         next(error);
     }
 };
@@ -139,10 +154,11 @@ exports.login = async (req, res, next) => {
  */
 exports.refreshToken = async (req, res, next) => {
     try {
-        // Utwórz DTO i zwaliduj dane wejściowe
+        // Utwórz DTO i zwaliduj dane refresh tokenu
         const refreshTokenDto = new RefreshTokenDto(req.body);
         const validation = refreshTokenDto.validate();
 
+        // Sprawdź czy refresh token został podany
         if (!validation.isValid) {
             return res.status(400).json({
                 success: false,
@@ -151,7 +167,7 @@ exports.refreshToken = async (req, res, next) => {
             });
         }
 
-        // Sprawdzenie, czy użytkownik z danym refresh tokenem istnieje
+        // Poszukaj użytkownika po refresh tokenie
         const user = await User.findOne({ refreshToken: refreshTokenDto.refreshToken });
         if (!user) {
             return res.status(401).json({
@@ -160,20 +176,22 @@ exports.refreshToken = async (req, res, next) => {
             });
         }
 
-        // Wygenerowanie nowych tokenów
+        // Wygeneruj nowe tokeny dla użytkownika
         const newToken = generateToken(user);
         const newRefreshToken = generateRefreshToken(user);
 
-        // Aktualizacja refresh tokenu w bazie danych
+        // Zapisz nowy refresh token w bazie danych
         user.refreshToken = newRefreshToken;
         await user.save();
 
+        // Zwróć nowe tokeny
         res.json({
             success: true,
             token: newToken,
             refreshToken: newRefreshToken
         });
     } catch (error) {
+        // Przekaż błąd do middleware obsługi błędów
         next(error);
     }
 };
@@ -185,15 +203,17 @@ exports.refreshToken = async (req, res, next) => {
  */
 exports.logout = async (req, res, next) => {
     try {
-        // Usunięcie refresh tokenu z bazy danych
+        // Usuń refresh token z bazy danych aby unieważnić sesję
         req.user.refreshToken = null;
         await req.user.save();
 
+        // Zwróć potwierdzenie wylogowania
         res.json({
             success: true,
             message: 'Wylogowanie zakończone pomyślnie'
         });
     } catch (error) {
+        // Przekaż błąd do middleware obsługi błędów
         next(error);
     }
 };
@@ -205,14 +225,16 @@ exports.logout = async (req, res, next) => {
  */
 exports.getProfile = async (req, res, next) => {
     try {
-        // Mapuj odpowiedź przy użyciu DTO
+        // Mapuj dane użytkownika do DTO profilu (bez wrażliwych danych)
         const profileDto = UserMapper.toProfileDto(req.user);
 
+        // Zwróć dane profilu użytkownika
         res.json({
             success: true,
             user: profileDto.toResponse()
         });
     } catch (error) {
+        // Przekaż błąd do middleware obsługi błędów
         next(error);
     }
 };

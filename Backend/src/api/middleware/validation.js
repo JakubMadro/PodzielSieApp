@@ -1,22 +1,26 @@
+// Import biblioteki express-validator do walidacji danych
 const { body, param, validationResult } = require('express-validator');
 
 /**
  * Ogólna funkcja sprawdzająca wyniki walidacji
  */
 const validate = (req, res, next) => {
+    // Pobierz wyniki walidacji z express-validator
     const errors = validationResult(req);
 
+    // Jeśli są błędy walidacji, zwróć odpowiedź z błędami
     if (!errors.isEmpty()) {
         return res.status(400).json({
             success: false,
             message: 'Błędy walidacji danych',
             errors: errors.array().map(err => ({
-                field: err.param,
-                message: err.msg
+                field: err.param,    // Nazwa pola z błędem
+                message: err.msg     // Komunikat błędu
             }))
         });
     }
 
+    // Jeśli walidacja przeszła pomyślnie, przejdź dalej
     next();
 };
 

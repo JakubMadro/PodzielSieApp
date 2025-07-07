@@ -1,3 +1,4 @@
+// Importy modeli danych
 const User = require('../../models/User');
 const Group = require('../../models/Group');
 const mongoose = require('mongoose');
@@ -11,25 +12,25 @@ const mongoose = require('mongoose');
  */
 exports.searchUsers = async (query, currentUserId) => {
     try {
-        // Przygotuj wyrażenie regularne do wyszukiwania
+        // Utwórz wyrażenie regularne dla wyszukiwania bez uwzględniania wielkości liter
         const searchRegex = new RegExp(query, 'i');
 
-        // Znajdź użytkowników na podstawie zapytania
+        // Znajdź użytkowników pasujących do zapytania w różnych polach
         const users = await User.find({
             $and: [
-                { _id: { $ne: currentUserId } }, // Wyklucz bieżącego użytkownika
+                { _id: { $ne: currentUserId } }, // Wyklucz bieżącego użytkownika z wyników
                 {
                     $or: [
-                        { email: searchRegex },
-                        { firstName: searchRegex },
-                        { lastName: searchRegex },
-                        { phoneNumber: searchRegex }
+                        { email: searchRegex },        // Wyszukaj po emailu
+                        { firstName: searchRegex },    // Wyszukaj po imieniu
+                        { lastName: searchRegex },     // Wyszukaj po nazwisku
+                        { phoneNumber: searchRegex }   // Wyszukaj po numerze telefonu
                     ]
                 }
             ]
         })
-            .select('firstName lastName email avatar') // Pobierz tylko potrzebne pola
-            .limit(10); // Ogranicz wyniki do 10 użytkowników
+            .select('firstName lastName email avatar') // Pobierz tylko niezbędne pola (bez wrażliwych danych)
+            .limit(10); // Ogranicz wyniki do maksymalnie 10 użytkowników
 
         return users;
     } catch (error) {
@@ -46,8 +47,9 @@ exports.searchUsers = async (query, currentUserId) => {
  */
 exports.getUserById = async (userId) => {
     try {
+        // Pobierz użytkownika po ID, wykluczając wrażliwe informacje
         const user = await User.findById(userId)
-            .select('-password -refreshToken'); // Wyklucz wrażliwe dane
+            .select('-password -refreshToken'); // Usuń hasło i token odświeżania z odpowiedzi
 
         return user;
     } catch (error) {

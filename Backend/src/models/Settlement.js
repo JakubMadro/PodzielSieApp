@@ -49,6 +49,7 @@ const SettlementSchema = new mongoose.Schema({
     }
 }, { timestamps: true });
 
+// Dodaj plugin paginacji do schematu
 SettlementSchema.plugin(mongoosePaginate);
 
 module.exports = mongoose.model('Settlement', SettlementSchema);

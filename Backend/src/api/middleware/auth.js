@@ -1,3 +1,4 @@
+// Importy narzędzi autoryzacji i modelu użytkownika
 const { verifyToken } = require('../../config/auth');
 const User = require('../../models/User');
 
@@ -7,19 +8,20 @@ const User = require('../../models/User');
  */
 const authenticate = async (req, res, next) => {
     try {
-        // Pobierz token z nagłówka Authorization
+        // Pobierz nagłówek Authorization z requestu
         const authHeader = req.headers.authorization;
 
+        // Sprawdź czy nagłówek istnieje i ma prawidłowy format "Bearer TOKEN"
         if (!authHeader || !authHeader.startsWith('Bearer ')) {
             return res.status(401).json({
                 message: 'Brak dostępu, wymagane uwierzytelnienie'
             });
         }
 
-        // Wyciągnij token z nagłówka
+        // Wyciągnij token JWT z nagłówka (usuwając "Bearer ")
         const token = authHeader.split(' ')[1];
 
-        // Zweryfikuj token
+        // Zweryfikuj token JWT i zdekoduj dane użytkownika
         const decoded = verifyToken(token);
         if (!decoded) {
             return res.status(401).json({
@@ -27,7 +29,7 @@ const authenticate = async (req, res, next) => {
             });
         }
 
-        // Sprawdź, czy użytkownik istnieje w bazie danych
+        // Sprawdź czy użytkownik o ID z tokenu nadal istnieje w bazie
         const user = await User.findById(decoded.id).select('-password');
         if (!user) {
             return res.status(401).json({
@@ -35,9 +37,10 @@ const authenticate = async (req, res, next) => {
             });
         }
 
-        // Dodaj dane użytkownika do obiektu req
+        // Dodaj dane użytkownika do obiektu request dla kolejnych middleware
         req.user = user;
 
+        // Przejdź do następnego middleware
         next();
     } catch (error) {
         console.error('Błąd autentykacji:', error);

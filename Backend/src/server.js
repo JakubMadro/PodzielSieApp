@@ -1,3 +1,4 @@
+// Główny plik serwera - punkt wejściowy aplikacji
 const express = require('express');
 const dotenv = require('dotenv');
 const mongoose = require('mongoose');
@@ -5,14 +6,14 @@ const path = require('path');
 const fs = require('fs');
 const swaggerUi = require('swagger-ui-express');
 
-// Załaduj zmienne środowiskowe
-// Załaduj zmienne środowiskowe z poprawną ścieżką
+// Załaduj zmienne środowiskowe z pliku .env
 dotenv.config({ path: path.resolve(__dirname, '../.env') })
 
+// Określ środowisko uruchomienia (development/production/test)
 const NODE_ENV = process.env.NODE_ENV || 'development';
 console.log(`Uruchamianie w środowisku: ${NODE_ENV}`);
 
-// Utwórz katalog na uploadowane pliki
+// Utwórz katalog na uploadowane pliki (zdjęcia paragongonów, awatary)
 const uploadDir = process.env.UPLOAD_DIR || 'uploads';
 if (!fs.existsSync(uploadDir)) {
     fs.mkdirSync(uploadDir, { recursive: true });
@@ -23,20 +24,20 @@ const { connectToDatabase } = require('./config/database');
 const { setupApp } = require('./config/app');
 const { swaggerSpec } = require('./config/swagger');
 
-// Inicjalizacja aplikacji Express
+// Utwórz instancję aplikacji Express
 const app = express();
 
-// Konfiguracja aplikacji (middleware, rate limit, cors, itd.)
+// Zastosuj konfigurację aplikacji (middleware, rate limit, CORS, parsing JSON)
 setupApp(app);
 
-// Konfiguracja Swagger UI
+// Konfiguracja Swagger UI dla dokumentacji API
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec, {
-    explorer: true,
-    customCss: '.swagger-ui .topbar { display: none }',
+    explorer: true,                                    // Włącz explorer
+    customCss: '.swagger-ui .topbar { display: none }', // Ukryj górny pasek Swagger
     swaggerOptions: {
-        docExpansion: 'none',
-        filter: true,
-        showRequestDuration: true,
+        docExpansion: 'none',    // Nie rozwijaj sekcji domyślnie
+        filter: true,            // Włącz filtrowanie endpointów
+        showRequestDuration: true, // Pokaż czas trwania zapytań
     }
 }));
 
@@ -122,12 +123,13 @@ app.use((req, res) => {
 // Pobierz port z env lub użyj domyślnego
 const PORT = process.env.PORT || 5545;
 
-// Połącz z bazą danych i uruchom serwer tylko jeśli nie jesteśmy w trybie testowym
+// Funkcja startująca aplikację - łączy z bazą i uruchamia serwer
 (async () => {
     try {
+        // Nawiąż połączenie z bazą danych MongoDB
         await connectToDatabase();
 
-        // Uruchom serwer tylko wtedy, gdy nie jesteśmy w trybie testowym
+        // Uruchom serwer HTTP tylko jeśli nie jesteśmy w trybie testowym
         if (process.env.TEST_MODE !== 'true') {
             app.listen(PORT, () => {
                 console.log(`Serwer uruchomiony na porcie ${PORT} w trybie ${process.env.NODE_ENV}`);
@@ -142,9 +144,10 @@ const PORT = process.env.PORT || 5545;
     }
 })();
 
-// Obsługa zamknięcia aplikacji
+// Obsługa graceful shutdown przy otrzymaniu sygnału SIGINT (Ctrl+C)
 process.on('SIGINT', async () => {
     try {
+        // Zamknij połączenie z bazą danych
         await mongoose.connection.close();
         console.log('Połączenie z bazą danych zamknięte');
         process.exit(0);

@@ -1,3 +1,4 @@
+// Router do obsługi tras związanych z autoryzacją i autentykacją
 const express = require('express');
 const userController = require('../controllers/userController');
 const { authenticate } = require('../middleware/auth');
@@ -6,6 +7,7 @@ const {
     loginValidation
 } = require('../middleware/validation');
 
+// Utwórz nowy router Express
 const router = express.Router();
 
 /**
@@ -47,6 +49,7 @@ const router = express.Router();
  *       409:
  *         description: Konflikt - adres email jest już używany
  */
+// Trasa rejestracji nowego użytkownika
 router.post('/register', userController.register);
 
 /**
@@ -88,6 +91,7 @@ router.post('/register', userController.register);
  *       401:
  *         description: Nieprawidłowe dane logowania
  */
+// Trasa logowania użytkownika
 router.post('/login', userController.login);
 
 /**
@@ -124,6 +128,7 @@ router.post('/login', userController.login);
  *       401:
  *         description: Nieprawidłowy token odświeżający
  */
+// Trasa odświeżania tokenu JWT
 router.post('/refresh-token', userController.refreshToken);
 
 /**
@@ -151,6 +156,7 @@ router.post('/refresh-token', userController.refreshToken);
  *       401:
  *         $ref: '#/components/responses/Unauthorized'
  */
+// Trasa wylogowania użytkownika (wymaga autoryzacji)
 router.post('/logout', authenticate, userController.logout);
 
 /**
@@ -191,6 +197,7 @@ router.post('/logout', authenticate, userController.logout);
  *       400:
  *         $ref: '#/components/responses/BadRequest'
  */
+// Trasa żądania resetowania hasła
 router.post('/forgot-password', userController.forgotPassword);
 
 /**
@@ -257,6 +264,7 @@ router.post('/forgot-password', userController.forgotPassword);
  *                   items:
  *                     type: string
  */
+// Trasa resetowania hasła za pomocą tokenu
 router.post('/reset-password', userController.resetPassword);
 
 module.exports = router;

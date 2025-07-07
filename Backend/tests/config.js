@@ -16,7 +16,7 @@ const setupDatabase = async () => {
         }
 
         // Użyj testowego URI połączenia
-        const dbURI = process.env.MONGODB_URI_TEST || 'mongodb+srv://Spleetwise:qonke6jowtaxtuVzer@cluster0.vvmcj.mongodb.net/testyautomatyczne?retryWrites=true&w=majority&appName=Cluster0';
+        const dbURI = process.env.MONGODB_URI_TEST || 
 
         await mongoose.connect(dbURI, {
             useNewUrlParser: true,

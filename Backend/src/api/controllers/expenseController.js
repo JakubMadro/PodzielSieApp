@@ -1,8 +1,13 @@
+// Importy modeli danych
 const Expense = require('../../models/Expense');
 const Group = require('../../models/Group');
 const User = require('../../models/User');
+
+// Importy serwisów biznesowych
 const expenseService = require('../services/expenseService');
 const settlementService = require('../services/settlementService');
+
+// Importy narzędzi pomocniczych
 const { sendNotification } = require('../../utils/notifications');
 const multer = require('multer');
 const path = require('path');
@@ -16,6 +21,7 @@ const { v4: uuidv4 } = require('uuid');
  */
 exports.createExpense = async (req, res, next) => {
     try {
+        // Wyodrębnij dane wydatku z body requestu
         const {
             group: groupId,
             description,
@@ -29,7 +35,7 @@ exports.createExpense = async (req, res, next) => {
             flags
         } = req.body;
 
-        // Sprawdź, czy grupa istnieje
+        // Sprawdź czy grupa o podanym ID istnieje
         const group = await Group.findById(groupId);
         if (!group) {
             return res.status(404).json({
@@ -38,7 +44,7 @@ exports.createExpense = async (req, res, next) => {
             });
         }
 
-        // Sprawdź, czy użytkownik jest członkiem grupy
+        // Zweryfikuj czy użytkownik jest członkiem tej grupy
         const isMember = group.members.some(
             member => member.user.toString() === req.user._id.toString()
         );
