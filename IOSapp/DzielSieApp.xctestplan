@@ -1,0 +1,45 @@
+{
+  "configurations" : [
+    {
+      "id" : "4932717D-DFC4-497E-B0E1-F756D600E2F7",
+      "name" : "Test Scheme Action",
+      "options" : {
+
+      }
+    }
+  ],
+  "defaultOptions" : {
+    "targetForVariableExpansion" : {
+      "containerPath" : "container:DzielSieApp.xcodeproj",
+      "identifier" : "8CE48D952DA12991001E453C",
+      "name" : "DzielSieApp"
+    }
+  },
+  "testTargets" : [
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:DzielSieApp.xcodeproj",
+        "identifier" : "8CE48DA52DA12991001E453C",
+        "name" : "DzielSieAppTests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:DzielSieApp.xcodeproj",
+        "identifier" : "8CE48DAF2DA12991001E453C",
+        "name" : "DzielSieAppUITests"
+      }
+    },
+    {
+      "parallelizable" : true,
+      "target" : {
+        "containerPath" : "container:DzielSieApp.xcodeproj",
+        "identifier" : "8CAE2A492DA3AD5400704135",
+        "name" : "DzielSieAppUITest"
+      }
+    }
+  ],
+  "version" : 1
+}

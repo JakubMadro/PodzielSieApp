@@ -1,0 +1,661 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXContainerItemProxy section */
+		8CAE2A502DA3AD5500704135 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CE48D8E2DA12991001E453C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CE48D952DA12991001E453C;
+			remoteInfo = DzielSieApp;
+		};
+		8CE48DA72DA12991001E453C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CE48D8E2DA12991001E453C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CE48D952DA12991001E453C;
+			remoteInfo = DzielSieApp;
+		};
+		8CE48DB12DA12991001E453C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 8CE48D8E2DA12991001E453C /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8CE48D952DA12991001E453C;
+			remoteInfo = DzielSieApp;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		8CAE2A4A2DA3AD5400704135 /* DzielSieAppUITest.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DzielSieAppUITest.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CAE2A552DA3D4F000704135 /* DzielSieApp.xctestplan */ = {isa = PBXFileReference; lastKnownFileType = text; path = DzielSieApp.xctestplan; sourceTree = "<group>"; };
+		8CE48D962DA12991001E453C /* DzielSieApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DzielSieApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CE48DA62DA12991001E453C /* DzielSieAppTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DzielSieAppTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		8CE48DB02DA12991001E453C /* DzielSieAppUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = DzielSieAppUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+/* End PBXFileReference section */
+
+/* Begin PBXFileSystemSynchronizedRootGroup section */
+		8CAE2A4B2DA3AD5400704135 /* DzielSieAppUITest */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DzielSieAppUITest;
+			sourceTree = "<group>";
+		};
+		8CE48D982DA12991001E453C /* DzielSieApp */ = {
+			isa = PBXFileSystemSynchronizedRootGroup;
+			path = DzielSieApp;
+			sourceTree = "<group>";
+		};
+/* End PBXFileSystemSynchronizedRootGroup section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		8CAE2A472DA3AD5400704135 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CE48D932DA12991001E453C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CE48DA32DA12991001E453C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CE48DAD2DA12991001E453C /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		8CE48D8D2DA12991001E453C = {
+			isa = PBXGroup;
+			children = (
+				8CAE2A552DA3D4F000704135 /* DzielSieApp.xctestplan */,
+				8CE48D982DA12991001E453C /* DzielSieApp */,
+				8CAE2A4B2DA3AD5400704135 /* DzielSieAppUITest */,
+				8CE48D972DA12991001E453C /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		8CE48D972DA12991001E453C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				8CE48D962DA12991001E453C /* DzielSieApp.app */,
+				8CE48DA62DA12991001E453C /* DzielSieAppTests.xctest */,
+				8CE48DB02DA12991001E453C /* DzielSieAppUITests.xctest */,
+				8CAE2A4A2DA3AD5400704135 /* DzielSieAppUITest.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		8CAE2A492DA3AD5400704135 /* DzielSieAppUITest */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CAE2A522DA3AD5500704135 /* Build configuration list for PBXNativeTarget "DzielSieAppUITest" */;
+			buildPhases = (
+				8CAE2A462DA3AD5400704135 /* Sources */,
+				8CAE2A472DA3AD5400704135 /* Frameworks */,
+				8CAE2A482DA3AD5400704135 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8CAE2A512DA3AD5500704135 /* PBXTargetDependency */,
+			);
+			fileSystemSynchronizedGroups = (
+				8CAE2A4B2DA3AD5400704135 /* DzielSieAppUITest */,
+			);
+			name = DzielSieAppUITest;
+			packageProductDependencies = (
+			);
+			productName = DzielSieAppUITest;
+			productReference = 8CAE2A4A2DA3AD5400704135 /* DzielSieAppUITest.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+		8CE48D952DA12991001E453C /* DzielSieApp */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CE48DBA2DA12991001E453C /* Build configuration list for PBXNativeTarget "DzielSieApp" */;
+			buildPhases = (
+				8CE48D922DA12991001E453C /* Sources */,
+				8CE48D932DA12991001E453C /* Frameworks */,
+				8CE48D942DA12991001E453C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			fileSystemSynchronizedGroups = (
+				8CE48D982DA12991001E453C /* DzielSieApp */,
+			);
+			name = DzielSieApp;
+			packageProductDependencies = (
+			);
+			productName = DzielSieApp;
+			productReference = 8CE48D962DA12991001E453C /* DzielSieApp.app */;
+			productType = "com.apple.product-type.application";
+		};
+		8CE48DA52DA12991001E453C /* DzielSieAppTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CE48DBD2DA12991001E453C /* Build configuration list for PBXNativeTarget "DzielSieAppTests" */;
+			buildPhases = (
+				8CE48DA22DA12991001E453C /* Sources */,
+				8CE48DA32DA12991001E453C /* Frameworks */,
+				8CE48DA42DA12991001E453C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8CE48DA82DA12991001E453C /* PBXTargetDependency */,
+			);
+			name = DzielSieAppTests;
+			packageProductDependencies = (
+			);
+			productName = DzielSieAppTests;
+			productReference = 8CE48DA62DA12991001E453C /* DzielSieAppTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		8CE48DAF2DA12991001E453C /* DzielSieAppUITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 8CE48DC02DA12991001E453C /* Build configuration list for PBXNativeTarget "DzielSieAppUITests" */;
+			buildPhases = (
+				8CE48DAC2DA12991001E453C /* Sources */,
+				8CE48DAD2DA12991001E453C /* Frameworks */,
+				8CE48DAE2DA12991001E453C /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				8CE48DB22DA12991001E453C /* PBXTargetDependency */,
+			);
+			name = DzielSieAppUITests;
+			packageProductDependencies = (
+			);
+			productName = DzielSieAppUITests;
+			productReference = 8CE48DB02DA12991001E453C /* DzielSieAppUITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		8CE48D8E2DA12991001E453C /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = 1;
+				LastSwiftUpdateCheck = 1620;
+				LastUpgradeCheck = 1620;
+				TargetAttributes = {
+					8CAE2A492DA3AD5400704135 = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 8CE48D952DA12991001E453C;
+					};
+					8CE48D952DA12991001E453C = {
+						CreatedOnToolsVersion = 16.2;
+					};
+					8CE48DA52DA12991001E453C = {
+						CreatedOnToolsVersion = 16.2;
+						LastSwiftMigration = 1620;
+						TestTargetID = 8CE48D952DA12991001E453C;
+					};
+					8CE48DAF2DA12991001E453C = {
+						CreatedOnToolsVersion = 16.2;
+						TestTargetID = 8CE48D952DA12991001E453C;
+					};
+				};
+			};
+			buildConfigurationList = 8CE48D912DA12991001E453C /* Build configuration list for PBXProject "DzielSieApp" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 8CE48D8D2DA12991001E453C;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = 8CE48D972DA12991001E453C /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				8CE48D952DA12991001E453C /* DzielSieApp */,
+				8CE48DA52DA12991001E453C /* DzielSieAppTests */,
+				8CE48DAF2DA12991001E453C /* DzielSieAppUITests */,
+				8CAE2A492DA3AD5400704135 /* DzielSieAppUITest */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		8CAE2A482DA3AD5400704135 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CE48D942DA12991001E453C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CE48DA42DA12991001E453C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CE48DAE2DA12991001E453C /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		8CAE2A462DA3AD5400704135 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CE48D922DA12991001E453C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CE48DA22DA12991001E453C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		8CE48DAC2DA12991001E453C /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		8CAE2A512DA3AD5500704135 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CE48D952DA12991001E453C /* DzielSieApp */;
+			targetProxy = 8CAE2A502DA3AD5500704135 /* PBXContainerItemProxy */;
+		};
+		8CE48DA82DA12991001E453C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CE48D952DA12991001E453C /* DzielSieApp */;
+			targetProxy = 8CE48DA72DA12991001E453C /* PBXContainerItemProxy */;
+		};
+		8CE48DB22DA12991001E453C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8CE48D952DA12991001E453C /* DzielSieApp */;
+			targetProxy = 8CE48DB12DA12991001E453C /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin XCBuildConfiguration section */
+		8CAE2A532DA3AD5500704135 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3Q36UAHDD4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Jakubmadro.DzielSieAppUITest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DzielSieApp;
+			};
+			name = Debug;
+		};
+		8CAE2A542DA3AD5500704135 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_TEAM = 3Q36UAHDD4;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Jakubmadro.DzielSieAppUITest;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DzielSieApp;
+			};
+			name = Release;
+		};
+		8CE48DB82DA12991001E453C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = "DEBUG $(inherited)";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		8CE48DB92DA12991001E453C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ASSETCATALOG_COMPILER_GENERATE_SWIFT_ASSET_SYMBOL_EXTENSIONS = YES;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++20";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu17;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				LOCALIZATION_PREFERS_STRING_CATALOGS = YES;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		8CE48DBB2DA12991001E453C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DzielSieApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 3Q36UAHDD4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Jakubmadro.DzielSieApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		8CE48DBC2DA12991001E453C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				DEVELOPMENT_ASSET_PATHS = "\"DzielSieApp/Preview Content\"";
+				DEVELOPMENT_TEAM = 3Q36UAHDD4;
+				ENABLE_PREVIEWS = YES;
+				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
+				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
+				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Jakubmadro.DzielSieApp;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = YES;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		8CE48DBE2DA12991001E453C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Jakubmadro.DzielSieAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "Testy/DzielSieAppTests-Bridging-Header.h";
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DzielSieApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DzielSieApp";
+			};
+			name = Debug;
+		};
+		8CE48DBF2DA12991001E453C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_MODULES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 18.2;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Jakubmadro.DzielSieAppTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_OBJC_BRIDGING_HEADER = "Testy/DzielSieAppTests-Bridging-Header.h";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/DzielSieApp.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/DzielSieApp";
+			};
+			name = Release;
+		};
+		8CE48DC12DA12991001E453C /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Jakubmadro.DzielSieAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DzielSieApp;
+			};
+			name = Debug;
+		};
+		8CE48DC22DA12991001E453C /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = Jakubmadro.DzielSieAppUITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = DzielSieApp;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		8CAE2A522DA3AD5500704135 /* Build configuration list for PBXNativeTarget "DzielSieAppUITest" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CAE2A532DA3AD5500704135 /* Debug */,
+				8CAE2A542DA3AD5500704135 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CE48D912DA12991001E453C /* Build configuration list for PBXProject "DzielSieApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CE48DB82DA12991001E453C /* Debug */,
+				8CE48DB92DA12991001E453C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CE48DBA2DA12991001E453C /* Build configuration list for PBXNativeTarget "DzielSieApp" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CE48DBB2DA12991001E453C /* Debug */,
+				8CE48DBC2DA12991001E453C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CE48DBD2DA12991001E453C /* Build configuration list for PBXNativeTarget "DzielSieAppTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CE48DBE2DA12991001E453C /* Debug */,
+				8CE48DBF2DA12991001E453C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		8CE48DC02DA12991001E453C /* Build configuration list for PBXNativeTarget "DzielSieAppUITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				8CE48DC12DA12991001E453C /* Debug */,
+				8CE48DC22DA12991001E453C /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 8CE48D8E2DA12991001E453C /* Project object */;
+}
